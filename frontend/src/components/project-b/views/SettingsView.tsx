@@ -9,14 +9,14 @@ function SettingsGroup({ label, children, zIndex = 1 }: { label: string; childre
       <h3 className="section-header px-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
         {label}
       </h3>
-      <div className="bg-[#12141A] rounded-3xl border border-white/5 shadow-[0_0_20px_rgba(0,0,0,0.5)] divide-y divide-white/5 relative">
+      {/* MATCHED DASHBOARD: bg-card, adaptive border, softened shadow */}
+      <div className="bg-card rounded-[20px] border border-black/5 dark:border-white/5 shadow-sm divide-y divide-black/5 dark:divide-white/5 relative">
         {children}
       </div>
     </div>
   );
 }
 
-// Clean right-aligned input (unchanged – works well)
 function SettingsInput({
   label,
   value,
@@ -38,13 +38,13 @@ function SettingsInput({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="bg-transparent text-right text-sm text-white/90 placeholder:text-white/30 focus:outline-none flex-1 min-w-0"
+        // MATCHED DASHBOARD: adaptive text and placeholder colors
+        className="bg-transparent text-right text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none flex-1 min-w-0"
       />
     </div>
   );
 }
 
-// High-end Custom Animated Dropdown Matches AnalysisView
 function SettingsSelect({
   label,
   value,
@@ -89,14 +89,17 @@ function SettingsSelect({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute top-[calc(100%+8px)] right-0 min-w-[140px] bg-card/90 backdrop-blur-xl border border-border rounded-2xl shadow-2xl overflow-hidden z-50 p-1.5"
+              className="absolute top-[calc(100%+8px)] right-0 min-w-[140px] bg-card/95 backdrop-blur-xl border border-black/5 dark:border-white/5 rounded-2xl shadow-lg overflow-hidden z-50 p-1.5"
             >
               <div className="max-h-[220px] overflow-y-auto no-scrollbar space-y-1">
                 {options.map((opt) => (
                   <button
                     key={opt}
-                    className={`w-full text-right px-4 py-2.5 text-[13px] rounded-[10px] transition-colors ${value === opt ? 'bg-secondary text-foreground font-semibold' : 'text-muted-foreground hover:bg-secondary/40 hover:text-foreground/90'
-                      }`}
+                    className={`w-full text-right px-4 py-2.5 text-[13px] rounded-[10px] transition-colors ${
+                      value === opt 
+                      ? 'bg-secondary text-foreground font-semibold' 
+                      : 'text-muted-foreground hover:bg-secondary/50 hover:text-foreground'
+                    }`}
                     onClick={() => {
                       onChange(opt);
                       setIsOpen(false);
@@ -137,7 +140,6 @@ export default function SettingsView() {
     setIsSaving(true);
     setSaveSuccess(false);
     
-    // UI Fake Delay for smooth UX since localStorage commits instantly
     setTimeout(() => {
         setIsSaving(false);
         setSaveSuccess(true);
@@ -150,11 +152,11 @@ export default function SettingsView() {
       <h1 className="text-3xl font-bold px-1 tracking-tight">Settings</h1>
 
       <div className="space-y-8">
-        <div className="bg-[#12141A] rounded-3xl overflow-hidden border border-white/5 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+        <div className="bg-card rounded-[20px] overflow-hidden border border-black/5 dark:border-white/5 shadow-sm transition-all hover:scale-[1.01]">
           <button
             onClick={() => triggerSync()}
             disabled={syncState.isSyncing}
-            className="w-full p-4 flex items-center justify-center text-blue-400 font-bold min-h-[50px] active:bg-white/5 transition-colors"
+            className="w-full p-4 flex items-center justify-center text-blue-500 dark:text-blue-400 font-bold min-h-[50px] hover:bg-secondary/30 active:bg-secondary/60 transition-colors"
           >
             Run Sync Engine
           </button>
@@ -165,13 +167,14 @@ export default function SettingsView() {
             <span className="text-sm font-medium text-foreground/80">Dark Mode</span>
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className={`w-[51px] h-[31px] rounded-full transition-colors duration-300 relative ${theme === 'dark' ? 'bg-system-green' : 'bg-muted-foreground/30'
-                }`}
+              className={`w-[51px] h-[31px] rounded-full transition-colors duration-300 relative ${
+                theme === 'dark' ? 'bg-system-green' : 'bg-muted-foreground/30'
+              }`}
             >
               <motion.div
                 animate={{ x: theme === 'dark' ? 22 : 2 }}
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                className="absolute top-[2px] w-[27px] h-[27px] bg-card rounded-full shadow-sm"
+                className="absolute top-[2px] w-[27px] h-[27px] bg-white rounded-full shadow-sm"
               />
             </button>
           </div>
@@ -227,7 +230,7 @@ export default function SettingsView() {
         <button
           onClick={handleSaveConfig}
           disabled={isSaving}
-          className="w-full bg-system-blue text-white rounded-2xl py-3.5 font-semibold text-sm flex items-center justify-center shadow-md active:scale-[0.98] transition-all disabled:opacity-70 disabled:scale-100 relative overflow-hidden"
+          className="w-full bg-blue-500 text-white rounded-[20px] py-3.5 font-semibold text-sm flex items-center justify-center shadow-md hover:bg-blue-600 active:scale-[0.98] transition-all disabled:opacity-70 disabled:scale-100 relative overflow-hidden"
         >
           <AnimatePresence mode="wait">
             {isSaving ? (
@@ -266,7 +269,7 @@ export default function SettingsView() {
         </button>
 
         <footer
-          className="pt-6 pb-10 flex flex-col items-center opacity-20 cursor-pointer hover:opacity-100 transition-opacity"
+          className="pt-6 pb-10 flex flex-col items-center text-muted-foreground opacity-40 cursor-pointer hover:opacity-100 transition-opacity"
           onClick={injectMockData}
         >
           <ShieldCheck size={24} className="mb-2" />
