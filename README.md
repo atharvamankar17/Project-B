@@ -1,6 +1,6 @@
 # Project B - VIERP Attendance & Timetable Terminal
 
-A modern web application for VIT students to monitor attendance, timetable, and academic performance by syncing data from the VIERP portal. Features real-time analysis, AI-powered chat assistance, dashboard views, simulator, and settings with progress tracking.
+A modern web application for VIT students to monitor attendance and timetable by syncing data from the VIERP portal. Features real-time analysis, AI-powered chat assistance, dashboard views, simulator, and settings with progress tracking.
 
 ## 🚀 Quick Start
 
