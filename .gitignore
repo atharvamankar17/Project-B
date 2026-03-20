@@ -19,8 +19,6 @@ Thumbs.db
 
 *.log
 
-backend/data/data.json
-
 **/node_modules/
 frontend/node_modules/
 
