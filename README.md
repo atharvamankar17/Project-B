@@ -43,7 +43,7 @@ Project-B/
 
 **Note**: Frontend directory excluded from structure as per specification.
 
-## 🏗️ System Architecture### 
+## 🏗️ System Architecture
 
 ### Core Components
 
