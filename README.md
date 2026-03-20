@@ -43,7 +43,7 @@ Project-B/
 
 **Note**: Frontend directory excluded from structure as per specification.
 
-## 🏗️ System Architecture\n\n![Architecture](https://via.placeholder.com/800x400/1e3a8a/ffffff?text=Project+B+Architecture)\n\n### High-Level Overview
+## 🏗️ System Architecture### 
 
 ### Core Components
 
